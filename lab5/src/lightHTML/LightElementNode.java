@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LightElementNode extends LightNode {
-    private List<LightNode> children = new ArrayList<>();
+    public List<LightNode> children = new ArrayList<>();
 
     public LightElementNode(String tagName, String closingType, List<String> cssClasses) {
         super(tagName, closingType, cssClasses);
