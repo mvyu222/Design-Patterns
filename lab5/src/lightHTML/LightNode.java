@@ -2,7 +2,7 @@ package lightHTML;
 
 import java.util.List;
 
-abstract class LightNode {
+public abstract class LightNode {
     protected String tagName;
     protected String closingType;
     protected List<String> cssClasses;
