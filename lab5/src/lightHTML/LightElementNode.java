@@ -1,5 +1,7 @@
 package lightHTML;
 
+import visitor.NodeVisitor;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,5 +61,16 @@ public class LightElementNode extends LightNode {
     @Override
     protected void onRemoved(LightNode node) {
         System.out.println("Node removed: " + node.tagName);
+    }
+
+    public void accept(NodeVisitor visitor) {
+        visitor.visit(this);
+        for (LightNode child : children) {
+            if (child instanceof LightElementNode) {
+                ((LightElementNode) child).accept(visitor);
+            } else if (child instanceof LightTextNode) {
+                ((LightTextNode) child).accept(visitor);
+            }
+        }
     }
 }

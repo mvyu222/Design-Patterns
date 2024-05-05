@@ -1,5 +1,7 @@
 package lightHTML;
 
+import visitor.NodeVisitor;
+
 import java.util.Collections;
 
 public class LightTextNode extends LightNode {
@@ -28,5 +30,9 @@ public class LightTextNode extends LightNode {
     @Override
     public String innerHtml() {
         return text;
+    }
+
+    public void accept(NodeVisitor visitor) {
+        visitor.visit(this);
     }
 }

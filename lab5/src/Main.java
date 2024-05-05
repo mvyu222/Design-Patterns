@@ -11,6 +11,7 @@ import lightHTML.LightTextNode;
 import state.HiddenState;
 import state.LightElementNodeWithState;
 import state.VisibleState;
+import visitor.RenderVisitor;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -120,6 +121,15 @@ public class Main {
         div4.setState(new VisibleState());
 
         div4.render();
+
+        //visitor
+        LightElementNode div5 = new LightElementNode("div", "open", Arrays.asList("container"));
+        LightTextNode text5 = new LightTextNode("Hello, World!");
+        div.add(text5);
+        
+        RenderVisitor renderVisitor = new RenderVisitor();
+
+        div5.accept(renderVisitor);
 
     }
 }
