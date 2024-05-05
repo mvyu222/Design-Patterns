@@ -8,6 +8,9 @@ import iterator.LightNodeIterator;
 import lightHTML.LightElementNode;
 import lightHTML.LightNode;
 import lightHTML.LightTextNode;
+import state.HiddenState;
+import state.LightElementNodeWithState;
+import state.VisibleState;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -100,6 +103,23 @@ public class Main {
         System.out.println("HTML після скасування видалення:");
         System.out.println(div3.outerHtml());
 
+
+
+        //state
+        LightElementNodeWithState div4 = new LightElementNodeWithState("div", "open", Arrays.asList("container"));
+        LightElementNodeWithState span4 = new LightElementNodeWithState("span", "open", Collections.emptyList());
+
+        div4.add(span4);
+
+        div4.render();
+
+        div4.setState(new HiddenState());
+
+        div4.render();
+
+        div4.setState(new VisibleState());
+
+        div4.render();
 
     }
 }
