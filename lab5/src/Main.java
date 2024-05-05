@@ -1,3 +1,7 @@
+import command.AddCommand;
+import command.Command;
+import command.CommandManager;
+import command.RemoveCommand;
 import iterator.BreadthFirstIterator;
 import iterator.DepthFirstIterator;
 import iterator.LightNodeIterator;
@@ -11,6 +15,8 @@ import java.util.Collections;
 public class Main {
     public static void main(String[] args) {
 
+
+        //template method
         LightElementNode div = new LightElementNode("div", "open", Arrays.asList("container"));
 
         LightElementNode paragraph = new LightElementNode("p", "open", Collections.emptyList());
@@ -35,7 +41,7 @@ public class Main {
         System.out.println(div.outerHtml());
 
 
-        //task2
+        //iterator
         LightElementNode div2 = new LightElementNode("div", "open", Arrays.asList("container"));
 
         LightElementNode p = new LightElementNode("p", "open", Collections.emptyList());
@@ -62,6 +68,37 @@ public class Main {
             LightNode node = bfsIterator.next();
             System.out.println(node.outerHtml());
         }
+
+        //command
+        LightElementNode div3 = new LightElementNode("div", "open", Arrays.asList("container"));
+        LightElementNode p3 = new LightElementNode("p", "open", Collections.emptyList());
+        LightTextNode text3 = new LightTextNode("Hello, World!");
+        p3.add(text3);
+
+        CommandManager commandManager = new CommandManager();
+
+
+        Command addCommand = new AddCommand(div3, p3);
+        commandManager.executeCommand(addCommand);
+
+        System.out.println("HTML після додавання:");
+        System.out.println(div3.outerHtml());
+
+        commandManager.cancel();
+
+        System.out.println("HTML після скасування додавання:");
+        System.out.println(div3.outerHtml());
+
+        Command removeCommand = new RemoveCommand(div3, p3);
+        commandManager.executeCommand(removeCommand);
+
+        System.out.println("HTML після видалення:");
+        System.out.println(div3.outerHtml());
+
+        commandManager.cancel();
+
+        System.out.println("HTML після скасування видалення:");
+        System.out.println(div3.outerHtml());
 
 
     }
